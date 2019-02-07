@@ -13,10 +13,10 @@ defmodule Telegram.Client do
   if Application.get_env(:telegram, :mock) == true do
     adapter Tesla.Mock
   else
-    adapter :hackney, :insecure, recv_timeout: 5_000
+    adapter Tesla.Adapter.Hackney
   end
 
-  plug Tesla.Middleware.Opts, recv_timeout: @recv_timeout, connect_timeout: @connect_timeout
+  plug Tesla.Middleware.Opts, recv_timeout: @recv_timeout, connect_timeout: @connect_timeout, :insecure
   plug Tesla.Middleware.BaseUrl, @api_base_url
   plug Tesla.Middleware.JSON
   plug Tesla.Middleware.Retry
