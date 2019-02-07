@@ -16,7 +16,7 @@ defmodule Telegram.Client do
     adapter Tesla.Adapter.Hackney
   end
 
-  plug Tesla.Middleware.Opts, recv_timeout: @recv_timeout, connect_timeout: @connect_timeout, :insecure
+  plug Tesla.Middleware.Opts, recv_timeout: @recv_timeout, connect_timeout: @connect_timeout
   plug Tesla.Middleware.BaseUrl, @api_base_url
   plug Tesla.Middleware.JSON
   plug Tesla.Middleware.Retry
